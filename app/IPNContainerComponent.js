@@ -11,30 +11,38 @@ class IPNContainerComponent extends Component {
         super(...arguments);
         this.state = {
             showDetails: false,
-            detailId:this.props.postList[0].id,
-            currentPost: this.props.postList[0]
+            currentPost: this.props.spotlightList[0]
         };
     }
 
     showDetails(postId) {
-        let filteredPost = this.props.postList.filter(
-            (post) => post.id == postId
-        );
+        let post = this.props.spotlightList[0];
+        let filteredPostIndex = this.props.spotlightList.findIndex((post)=>post.id == postId);
 
-        let post = this.props.postList[0];
-        if (filteredPost.length > 0)
-            post = filteredPost[0];
+        if (filteredPostIndex  > -1)
+            post = this.props.spotlightList[filteredPostIndex];
 
 
-        this.setState({detailId: postId, showDetails: true, currentPost: post});
+        this.setState({showDetails: true, currentPost: post});
     }
+
+
     toggleDetails() {
         this.setState({showDetails: !this.state.showDetails});
     }
 
+
+    showSpotlightList() {
+
+    }
+
+    showGeneralList() {
+
+    }
+
     render() {
         debugger;
-        var posts = this.props.postList.map((post) => {
+        var posts = this.props.spotlightList.map((post) => {
             return <PostList          key = {post.id}
                                       id={post.id}
                                       title={post.title.rendered}

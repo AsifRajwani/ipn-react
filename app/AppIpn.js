@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import IPNContainerComponent from './IPNContainerComponent';
 
-let postList = [
+let spotlightList = [
     {
         "id": 27,
         "date": "2016-05-01T13:05:05",
@@ -161,12 +161,173 @@ let postList = [
             }],
             "curies": [{"name": "wp", "href": "https:\/\/api.w.org\/{rel}", "templated": true}]
         }
-    }];
+    }
+];
+
+let generalList = [
+    {
+        "id": 34,
+        "date": "2016-05-01T13:13:03",
+        "date_gmt": "2016-05-01T13:13:03",
+        "guid": {"rendered": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/?p=34"},
+        "modified": "2016-05-11T17:33:54",
+        "modified_gmt": "2016-05-11T17:33:54",
+        "slug": "tech-and-hiring-trends-for-2016-and-beyond",
+        "type": "post",
+        "link": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/tech-and-hiring-trends-for-2016-and-beyond\/",
+        "title": {"rendered": "Tech and Hiring Trends for 2016 and Beyond"},
+        "content": {"rendered": "<p>A panel of accomplished professionals and entrepreneurs will discuss the ever evolving technological landscape along with trends that have the opportunity to impact professional growth over the next few years. The speakers will discuss how this new knowledge will reshape the way work will be done, how businesses will grow over time, and how markets and industries will present new opportunities from which professionals can benefit.<\/p>\n<p><em>REGISTER NOW and you will receive a webinar link via email 24-48 hours prior to the webinar. Learn more about our speakers below!<\/em><\/p>\n<p><strong>SPEAKERS<\/strong><br \/>\n<span style=\"text-decoration: underline;\">Karim Bhalwani<\/span><br \/>\n<em>Senior Manager, Strategy &amp; Business Development, Yodlee Interactive<img class=\"size-full wp-image-7 alignleft\" src=\"https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-content\/uploads\/2016\/05\/KarimBhalwani.png\" alt=\"KarimBhalwani\" width=\"124\" height=\"155\" \/><br \/>\n<\/em>Karim heads API Strategy &amp; Sales at Yodlee Interactive (YI), the world\u2019s first financial cloud for money management. He consults companies ranging from startups to multinational corporations, assesses their business needs for FinTech APIs as part of their product portfolio and sells Yodlee Interactive\u2019s core APIs in financial data aggregation and money movement. Karim has sourced and closed partnerships with over 200 consumer internet companies including Google, PayPal and Amazon. He previously served in management consulting roles at Capgemini, Mercer, Warner Bros., and Disney. Karim graduated cum laude from UCLA with a B.A. in Business Economics &amp; Accounting and completed an Executive Program at UC Berkeley Haas School of Business.<\/p>\n<p><span style=\"text-decoration: underline;\">Ashraf Karim<\/span><br \/>\n<em>Senior Technology Manager, Google<img class=\"size-full wp-image-12 alignleft\" src=\"https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-content\/uploads\/2016\/05\/AshrafKarim.png\" alt=\"AshrafKarim\" width=\"143\" height=\"143\" \/><br \/>\n<\/em>Ashraf has over 13 years of experience in the technology sector comprising of numerous roles across several companies. Currently, she is a Senior Technology Manager on a global product and engineering team at Google that builds solutions for the enterprise sales organization and partners worldwide. Since joining Google in 2013, she has been focused on increasing sales velocity in the small and mid-sized business segments and educational institutions by building strategies &amp; solutions that leverage data analytics and new software technology trends. Ashraf graduated with a BS degree in Computer Science &amp; Engineering from the University of California at Davis and also holds a MS degree in Electrical Engineering.<\/p>\n<p><span style=\"text-decoration: underline;\">Javed Panjwan<\/span>i<br \/>\nSenior Director, Cognizant<img class=\"size-full wp-image-6 alignleft\" src=\"https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-content\/uploads\/2016\/05\/JavedPanjwani.png\" alt=\"JavedPanjwani\" width=\"124\" height=\"157\" \/><br \/>\nJaved is a Senior Director at Cognizant, a NASDAQ listed Fortune 500 global consulting company. At Cognizant Javed leads the Cloud-ERP practice, where he is responsible for overall strategy, growth and practice development in North America. He started his career at Andersen Consulting and Deloitte Consulting where he was a Senior Consultant with the ERP practice. Javed also brings tremendous entrepreneurial experience with co-founding Cognivia \u2013 a SaaS implementation company as well as being the VP of Product Management and Strategy at a startup Foodtrader.com, an online exchange focused on optimizing global Food and Agriculture trading. Javed holds an MBA from Kellogg School of Management and holds an undergraduate degree in MIS from The University of Texas at Austin.<\/p>\n"},
+        "excerpt": {"rendered": "<p>A panel of accomplished professionals and entrepreneurs will discuss the ever evolving technological landscape along with trends that have the opportunity to impact professional growth over the next few years. The speakers will discuss how this new knowledge will reshape the way work will be<\/p>\n"},
+        "author": 1,
+        "featured_media": 16,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "format": "standard",
+        "categories": [3],
+        "tags": [],
+        "author_name": "ipndev",
+        "featured_image_src": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-content\/uploads\/2016\/05\/IPNLogo-150x150.png",
+        "_links": {
+            "self": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts\/34"}],
+            "collection": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts"}],
+            "about": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/types\/post"}],
+            "author": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/users\/1"
+            }],
+            "replies": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/comments?post=34"
+            }],
+            "version-history": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts\/34\/revisions"}],
+            "wp:featuredmedia": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/media\/16"
+            }],
+            "wp:attachment": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/media?parent=34"}],
+            "wp:term": [{
+                "taxonomy": "category",
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/categories?post=34"
+            }, {
+                "taxonomy": "post_tag",
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/tags?post=34"
+            }],
+            "curies": [{"name": "wp", "href": "https:\/\/api.w.org\/{rel}", "templated": true}]
+        }
+    },
+    {
+        "id": 31,
+        "date": "2016-05-01T13:10:48",
+        "date_gmt": "2016-05-01T13:10:48",
+        "guid": {"rendered": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/?p=31"},
+        "modified": "2016-05-01T13:10:57",
+        "modified_gmt": "2016-05-01T13:10:57",
+        "slug": "technology-trends-past-present-and-future",
+        "type": "post",
+        "link": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/technology-trends-past-present-and-future\/",
+        "title": {"rendered": "Technology Trends Past, Present and Future"},
+        "content": {"rendered": "<p>IPN Northeast is organizing a panel on Technology Trends.<br \/>\nThe event will feature <strong>Zubair Talib<\/strong>, Co-Founder &amp; CEO of YaSabe.com.<\/p>\n<p>Panelists includes:<\/p>\n<ol>\n<li>Karim Jumma &#8211; Logistics\/Supply Chain<\/li>\n<li>Noorali Sonawala &#8211; HR\/Resource Needs<\/li>\n<li>Amin Rhemtulla &#8211; Financial Sector<\/li>\n<li>Faridah Merchant &#8211; Moderator<\/li>\n<\/ol>\n"},
+        "excerpt": {"rendered": "<p>IPN Northeast is organizing a panel on Technology Trends. The event will feature Zubair Talib, Co-Founder &amp; CEO of YaSabe.com. Panelists includes: Karim Jumma &#8211; Logistics\/Supply Chain Noorali Sonawala &#8211; HR\/Resource Needs Amin Rhemtulla &#8211; Financial Sector Faridah Merchant &#8211; Moderator<\/p>\n"},
+        "author": 1,
+        "featured_media": 10,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "format": "standard",
+        "categories": [3],
+        "tags": [],
+        "author_name": "ipndev",
+        "featured_image_src": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-content\/uploads\/2016\/05\/TechTrends-150x150.png",
+        "_links": {
+            "self": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts\/31"}],
+            "collection": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts"}],
+            "about": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/types\/post"}],
+            "author": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/users\/1"
+            }],
+            "replies": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/comments?post=31"
+            }],
+            "version-history": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts\/31\/revisions"}],
+            "wp:featuredmedia": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/media\/10"
+            }],
+            "wp:attachment": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/media?parent=31"}],
+            "wp:term": [{
+                "taxonomy": "category",
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/categories?post=31"
+            }, {
+                "taxonomy": "post_tag",
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/tags?post=31"
+            }],
+            "curies": [{"name": "wp", "href": "https:\/\/api.w.org\/{rel}", "templated": true}]
+        }
+    },
+    {
+        "id": 19,
+        "date": "2016-05-01T12:49:56",
+        "date_gmt": "2016-05-01T12:49:56",
+        "guid": {"rendered": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/?p=19"},
+        "modified": "2016-05-01T12:51:48",
+        "modified_gmt": "2016-05-01T12:51:48",
+        "slug": "womens-history-month",
+        "type": "post",
+        "link": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/womens-history-month\/",
+        "title": {"rendered": "Women&#8217;s History Month"},
+        "content": {"rendered": "<p>In honor of Women&#8217;s History Month, IPN will be spotlighting accomplished Ismaili women across various industries and sharing articles about women in the workplace. Please join the conversation and share related content this month and throughout the year!<\/p>\n"},
+        "excerpt": {"rendered": "<p>In honor of Women&#8217;s History Month, IPN will be spotlighting accomplished Ismaili women across various industries and sharing articles about women in the workplace. Please join the conversation and share related content this month and throughout the year!<\/p>\n"},
+        "author": 1,
+        "featured_media": 13,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "format": "standard",
+        "categories": [3],
+        "tags": [],
+        "author_name": "ipndev",
+        "featured_image_src": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-content\/uploads\/2016\/05\/download-150x150.png",
+        "_links": {
+            "self": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts\/19"}],
+            "collection": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts"}],
+            "about": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/types\/post"}],
+            "author": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/users\/1"
+            }],
+            "replies": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/comments?post=19"
+            }],
+            "version-history": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/posts\/19\/revisions"}],
+            "wp:featuredmedia": [{
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/media\/13"
+            }],
+            "wp:attachment": [{"href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/media?parent=19"}],
+            "wp:term": [{
+                "taxonomy": "category",
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/categories?post=19"
+            }, {
+                "taxonomy": "post_tag",
+                "embeddable": true,
+                "href": "https:\/\/ipndev2.southcentralus.cloudapp.azure.com\/html\/wp-json\/wp\/v2\/tags?post=19"
+            }],
+            "curies": [{"name": "wp", "href": "https:\/\/api.w.org\/{rel}", "templated": true}]
+        }
+    }
+]
 
 
-
-
-render(<IPNContainerComponent postList={postList} title="SpotLight"/>, document.getElementById('root'));
+render(<IPNContainerComponent spotlightList={spotlightList} generalList={generalList} title="SpotLight"/>, document.getElementById('root'));
 
 
 /*
