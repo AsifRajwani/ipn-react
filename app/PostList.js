@@ -6,11 +6,6 @@ import React, { Component, PropTypes } from 'react';
 
 class PostList extends Component {
 
-    handleShowDetail(event){
-        this.props.onShowDetail(this.props.id)
-    }
-
-
     render() {
         return (
             <div className="container" id={this.props.id}>
@@ -23,7 +18,7 @@ class PostList extends Component {
                     <span className="label label-default">{this.props.publishDate}
                         {"   "}
                         <em>by</em> {this.props.authorName}</span>
-                    { " " } <a href="#" className="btn btn-info btn-xs" role="button"  onClick={this.handleShowDetail.bind(this)}>More....</a>
+                    { " " } <a href="#" className="btn btn-info btn-xs" role="button"  onClick={this.props.onShowDetail.bind(null, this.props.id)}>More....</a>
 
                     <br/><br/>
                 </div>
