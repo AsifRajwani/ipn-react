@@ -11,12 +11,22 @@ class IPNContainerComponent extends Component {
         super(...arguments);
         this.state = {
             showDetails: false,
-            DetailId:-1
+            detailId:this.props.postList[0].id,
+            currentPost: this.props.postList[0]
         };
     }
 
     showDetails(postId) {
-        this.setState({detailId: postId, showDetails: true});
+        let filteredPost = this.props.postList.filter(
+            (post) => post.id == postId
+        );
+
+        let post = this.props.postList[0];
+        if (filteredPost.length > 0)
+            post = filteredPost[0];
+
+
+        this.setState({detailId: postId, showDetails: true, currentPost: post});
     }
     toggleDetails() {
         this.setState({showDetails: !this.state.showDetails});
@@ -32,6 +42,7 @@ class IPNContainerComponent extends Component {
                                       excerpt={post.excerpt.rendered}
                                       publishDate={post.date_gmt}
                                       authorName={post.author_name}
+                                      onShowDetail={this.showDetails.bind(this)}
 
                 />
         });
@@ -49,7 +60,7 @@ class IPNContainerComponent extends Component {
 
             return (
                 <div className="postContainer container">
-                    <PostDetail post={this.props.postList[0]} key={this.props.postList[0].id}/>
+                    <PostDetail post={this.state.currentPost} key={this.state.currentPost.id}/>
                     <a href="#" className="btn btn-info btn-xs" role="button" onClick={this.toggleDetails.bind(this)}>Toogle State....</a>
                 </div>
             );

@@ -6,6 +6,10 @@ import React, { Component, PropTypes } from 'react';
 
 class PostList extends Component {
 
+    handleShowDetail(event){
+        this.props.onShowDetail(this.props.id)
+    }
+
 
     render() {
         return (
@@ -19,7 +23,7 @@ class PostList extends Component {
                     <span className="label label-default">{this.props.publishDate}
                         {"   "}
                         <em>by</em> {this.props.authorName}</span>
-                    { " " } <a href="#" className="btn btn-info btn-xs" role="button">More....</a>
+                    { " " } <a href="#" className="btn btn-info btn-xs" role="button"  onClick={this.handleShowDetail.bind(this)}>More....</a>
 
                     <br/><br/>
                 </div>
@@ -36,7 +40,8 @@ PostList.propTypes = {
     image: PropTypes.string.isRequired,
     excerpt: PropTypes.string.isRequired,
     publishDate: PropTypes.string.isRequired,
-    authorName: PropTypes.string.isRequired
+    authorName: PropTypes.string.isRequired,
+    onShowDetail: PropTypes.func.isRequired
 };
 
 
