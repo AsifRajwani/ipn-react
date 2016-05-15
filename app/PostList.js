@@ -9,14 +9,18 @@ class PostList extends Component {
     constructor() {
         super(...arguments);
         this.state = {
-            postList: spotlightList,
-            heading: "Spotlight"
         };
     }
 
     render() {
+        let currentPostList = spotlightList;
+        let heading = 'Spotlight Posts';
+        if (this.props.route.postType == "general") {
+            currentPostList = generalList;
+            heading = 'General Posts';
+        }
         debugger;
-        var posts = this.state.postList.map((post) => {
+        var posts = currentPostList.map((post) => {
             return <PostSummary key={post.id}
                              id={post.id}
                              title={post.title.rendered}
@@ -30,7 +34,7 @@ class PostList extends Component {
 
         return (
             <div className="postContainer container">
-                <h1 className="page-header collectionheading">{this.state.heading}</h1>
+                <h1 className="page-header collectionheading">{heading}</h1>
                 {posts}
                 {/*<a href="#" className="btn btn-info btn-xs" role="button" onClick={this.toggleDetails.bind(this)}>Toogle State....</a>*/}
             </div>
