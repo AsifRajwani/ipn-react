@@ -9,6 +9,8 @@ import PostDetail from './PostDetail';
 class IPNContainerComponent extends Component {
     constructor() {
         super(...arguments);
+        debugger;
+        {this.props.children}
         this.state = {
             showDetails: false,
             currentPost: this.props.spotlightList[0]
@@ -41,7 +43,6 @@ class IPNContainerComponent extends Component {
     }
 
     render() {
-        debugger;
         var posts = this.props.spotlightList.map((post) => {
             return <PostList          key = {post.id}
                                       id={post.id}
