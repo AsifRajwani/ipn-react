@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import PostList from './PostList';
 import PostDetail from './PostDetail';
+import { Link } from 'react-router'
 
 class IPNContainerComponent extends Component {
     constructor() {
@@ -13,7 +14,7 @@ class IPNContainerComponent extends Component {
         {this.props.children}
         this.state = {
             showDetails: false,
-            currentPost: this.props.spotlightList[0]
+            currentPost: {}
         };
     }
 
@@ -34,47 +35,52 @@ class IPNContainerComponent extends Component {
     }
 
 
-    showSpotlightList() {
-
-    }
-
-    showGeneralList() {
-
-    }
-
     render() {
-        var posts = this.props.spotlightList.map((post) => {
-            return <PostList          key = {post.id}
-                                      id={post.id}
-                                      title={post.title.rendered}
-                                      image={post.featured_image_src}
-                                      excerpt={post.excerpt.rendered}
-                                      publishDate={post.date_gmt}
-                                      authorName={post.author_name}
-                                      onShowDetail={this.showDetails.bind(this)}
 
-                />
-        });
 
-        if (this.state.showDetails == false) {
-            return (
-                <div className="postContainer container">
-                    <h1 className="page-header collectionheading">{this.props.title}</h1>
-                    {posts}
-                    <a href="#" className="btn btn-info btn-xs" role="button" onClick={this.toggleDetails.bind(this)}>Toogle State....</a>
-                </div>
-
-            );
-        } else {
-
-            return (
-                <div className="postContainer container">
-                    <PostDetail post={this.state.currentPost} key={this.state.currentPost.id}/>
-                    <a href="#" className="btn btn-info btn-xs" role="button" onClick={this.toggleDetails.bind(this)}>Toogle State....</a>
-                </div>
-            );
-        }
-
+        return (
+           <div>
+               <nav className="navbar navbar-default navbar-fixed-top">
+                   <div className="container">
+                       <div className="navbar-header">
+                           <a className="brand" style={{marginRight: 20}} href="#/"><img src="images/people.png" alt="logo"/></a>
+                       </div>
+                       <ul className="nav nav-pills" >
+                               <li><Link to="spotlight">Spotlight</Link></li>
+                               <li><Link to="general">General</Link></li>
+                        </ul>
+                   </div>
+               </nav>
+               {this.props.children}
+               <div id="footer">
+                   <div className="navbar navbar-default navbar-fixed-bottom">
+                       <div className="container">
+                           <footer>
+                               <div className="row">
+                                   <div className="col-sm-4">
+                                       Created by IPN Developer
+                                   </div>
+                                   <div className="col-sm-4">
+                                       Twitter: <a href="http://twitter.com/ipnonline">@ipnonline</a>
+                                   </div>
+                                   <div className="col-sm-4">
+                                       Facebook: <a href="https://www.facebook.com/groups/109359619096103/">Ismaili Professional Network</a>
+                                   </div>
+                               </div>
+                           </footer>
+                       </div>
+                   </div>
+               </div>
+           </div>);
     }
+
+/*
+<div>
+<h1> header </h1>
+<PostList key="prodList"   type="spotlight" ></PostList>
+<h1> footer </h1>
+</div>
+*/
+
 }
 export default IPNContainerComponent;

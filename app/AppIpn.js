@@ -1,6 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
+import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import IPNContainerComponent from './IPNContainerComponent';
+import PostList from './PostList';
+import PostDetail from './PostDetail';
 
 let spotlightList = [
     {
@@ -327,7 +330,22 @@ let generalList = [
 ]
 
 
-render(<IPNContainerComponent spotlightList={spotlightList} generalList={generalList} title="SpotLight"/>, document.getElementById('root'));
+const app = document.getElementById('root');
+
+render(
+    <Router history={hashHistory}>
+        <Route path="/" component={IPNContainerComponent}>
+            <IndexRoute component={PostList} postType="spotlight"></IndexRoute>
+            <Route path="spotlight" component={PostList} postType="spotlight"></Route>
+            <Route path="general" component={PostList} postType="general"></Route>
+            <Route path="post(/:postid)" component={PostDetail}></Route>
+        </Route>
+    </Router>,
+    app);
+
+
+
+/*render(<IPNContainerComponent spotlightList={spotlightList} generalList={generalList} title="SpotLight"/>, document.getElementById('root'));*/
 
 
 /*
