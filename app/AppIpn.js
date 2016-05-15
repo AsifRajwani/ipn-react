@@ -1,7 +1,10 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
-import IPNContainerComponent from './IPNContainerComponent';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import ipnApp from "../reducer/AppReducer.js"
+import CmsComponent from './CmsComponent';
 import PostList from './PostList';
 import PostDetail from './PostDetail';
 
@@ -331,18 +334,21 @@ let generalList = [
 
 
 const app = document.getElementById('root');
-
+let store = createStore(ipnApp)
 render(
-    <Router history={hashHistory}>
-        <Route path="/" component={IPNContainerComponent}>
-            <IndexRoute component={PostList} postType="spotlight"></IndexRoute>
-            <Route path="spotlight" component={PostList} postType="spotlight"></Route>
-            <Route path="general" component={PostList} postType="general"></Route>
-            <Route path="post(/:postid)" component={PostDetail}></Route>
-        </Route>
-    </Router>,
-    app);
-
+    <Provider store={store}>
+        <Router history={hashHistory}>
+            <Route path="/" component={CmsComponent}>
+                <IndexRoute component={PostList} postType="spotlight"></IndexRoute>
+                <Route path="spotlight" component={PostList} postType="spotlight"></Route>
+                <Route path="general" component={PostList} postType="general"></Route>
+                <Route path="post(/:postid)" component={PostDetail}></Route>
+            </Route>
+        </Router>
+    </Provider>,
+app
+)
+;
 
 
 /*render(<IPNContainerComponent spotlightList={spotlightList} generalList={generalList} title="SpotLight"/>, document.getElementById('root'));*/

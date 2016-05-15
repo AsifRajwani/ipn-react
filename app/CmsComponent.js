@@ -7,7 +7,7 @@ import PostList from './PostList';
 import PostDetail from './PostDetail';
 import { Link } from 'react-router'
 
-class IPNContainerComponent extends Component {
+class CmsComponent extends Component {
     constructor() {
         super(...arguments);
         debugger;
@@ -83,4 +83,4 @@ class IPNContainerComponent extends Component {
 */
 
 }
-export default IPNContainerComponent;
+export default CmsComponent;
