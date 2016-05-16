@@ -2,7 +2,7 @@
  * Created by asif on 5/15/2016.
  */
 
-const PostList = (state = {}, action='') => {
+const PostList = (state = spotlightList, action='') => {
     switch (action.type) {
         case 'GET_SPOTLIGHT_POSTS':
             return spotlightList;

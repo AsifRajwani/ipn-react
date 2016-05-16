@@ -7,7 +7,7 @@ import React, { Component, PropTypes } from 'react';
 
 class PostDetail extends Component {
     render() {
-        var post = samplePost;
+        var post = this.props.postDetail;
         return (
             <div className = "container" id={post.id}>
                 <h2 className="page-header">{post.title.rendered}</h2>

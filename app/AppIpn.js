@@ -5,7 +5,10 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import RootReducer from "../reducer/RootReducer.js"
 import CmsComponent from './CmsComponent';
+import CmsComponentContainer from '../containers/CmsComponentContainer';
 import PostList from './PostList';
+import PostListContainer from '../containers/PostListContainer';
+import PostDetailContainer from '../containers/PostDetailContainer';
 import PostDetail from './PostDetail';
 
 let spotlightList = [
@@ -338,11 +341,11 @@ let store = createStore(RootReducer);
 render(
     <Provider store={store}>
         <Router history={hashHistory}>
-            <Route path="/" component={CmsComponent}>
-                <IndexRoute component={PostList} postType="spotlight"></IndexRoute>
-                <Route path="spotlight" component={PostList} postType="spotlight"></Route>
-                <Route path="general" component={PostList} postType="general"></Route>
-                <Route path="post(/:postid)" component={PostDetail}></Route>
+            <Route path="/" component={CmsComponentContainer}>
+                <IndexRoute component={PostListContainer} postType="spotlight"></IndexRoute>
+                <Route path="spotlight" component={PostListContainer} postType="spotlight"></Route>
+                <Route path="general" component={PostListContainer} postType="general"></Route>
+                <Route path="post(/:postid)" component={PostDetailContainer}></Route>
             </Route>
         </Router>
     </Provider>,

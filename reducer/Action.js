@@ -4,9 +4,11 @@ All the actions used to update the store.
 
 import { dispatch } from 'redux'
 
+/*
 export const boundedGetSpotlightPosts =  () =>  dispatch(getSpotlightPosts());
 export const boundedGetGeneralPosts =  () =>  dispatch(getGeneralPosts());
 export const boundedGetPostDetails = (postId) => dispatch(getPostDetails(postId));
+*/
 
 
 export const getSpotlightPosts = () => {

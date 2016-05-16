@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import PostSummary from './PostSummary';
-import PostDetail from './PostDetail';
+import PostSummaryContainer from '../containers/PostDetailContainer';
 
 class PostList extends Component {
     constructor() {
@@ -13,7 +13,8 @@ class PostList extends Component {
     }
 
     render() {
-        let currentPostList = spotlightList;
+        //let currentPostList = spotlightList;
+        let currentPostList = this.props.postList
         let heading = 'Spotlight Posts';
         if (this.props.route.postType == "general") {
             currentPostList = generalList;
@@ -28,6 +29,7 @@ class PostList extends Component {
                              excerpt={post.excerpt.rendered}
                              publishDate={post.date_gmt}
                              authorName={post.author_name}
+                                onShowDetail = {this.props.onShowDetail}
 
                 />
         });
@@ -41,8 +43,6 @@ class PostList extends Component {
 
         );
     }
-
-
 }
 
 export default PostList;
