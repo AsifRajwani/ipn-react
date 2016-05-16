@@ -6,9 +6,9 @@ import { combineReducers } from 'redux'
 import PostList from './PostList'
 import PostDetail from './PostDetail'
 
-const ipnApp = combineReducers({
+const RootReducer = combineReducers({
     PostDetail,
     PostList
 })
 
-export default ipnApp
+export default RootReducer

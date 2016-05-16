@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import ipnApp from "../reducer/AppReducer.js"
+import RootReducer from "../reducer/RootReducer.js"
 import CmsComponent from './CmsComponent';
 import PostList from './PostList';
 import PostDetail from './PostDetail';
@@ -334,7 +334,7 @@ let generalList = [
 
 
 const app = document.getElementById('root');
-let store = createStore(ipnApp)
+let store = createStore(RootReducer);
 render(
     <Provider store={store}>
         <Router history={hashHistory}>
