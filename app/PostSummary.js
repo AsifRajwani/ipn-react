@@ -19,7 +19,7 @@ class PostSummary extends Component {
                     <span className="label label-default">{this.props.publishDate}
                         {"   "}
                         <em>by</em> {this.props.authorName}</span>
-                    { " " } <Link className="btn btn-info btn-xs" role="button"  to={"/post/"+this.props.id} onClick={this.props.onShowDetail(this.props.id)}>More....</Link>
+                    { " " } <Link className="btn btn-info btn-xs" role="button"  to={"/post/"+this.props.id} onClick={()=>this.props.onShowDetail(this.props.id)}>More....</Link>
 
 
 
@@ -30,7 +30,6 @@ class PostSummary extends Component {
     }
 
 /*<a href="#" className="btn btn-info btn-xs" role="button"  onClick={this.props.onShowDetail.bind(null, this.props.id)}>More....</a>*/
-
 }
 
 PostSummary.propTypes = {

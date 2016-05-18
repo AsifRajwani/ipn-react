@@ -2,10 +2,19 @@
  * Created by asif on 5/15/2016.
  */
 
-const PostDetail = (state = {}, action='') => {
+const PostDetail = (state = {
+    isFetching: false,
+    post: {}
+}, action='') => {
     switch (action.type) {
-        case 'GET_POST_DETAIL':
-            return spotlightList[0];
+        case 'RECEIVE_POST_DETAIL':
+            return Object.assign({}, state, {
+                isFetching: false, post: action.post
+            });
+        case 'CONTENT_REQUEST_STARTED':
+            return Object.assign({}, state, {
+                isFetching: true
+            });
         default:
             return state
     }

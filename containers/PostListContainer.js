@@ -8,7 +8,7 @@
 
 
 import { connect } from 'react-redux'
-import { getPostDetails } from '../reducer/Action'
+import { getPostDetail } from '../reducer/Action'
 import PostList from '../app/PostList'
 
 
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onShowDetail: (id) => {
-            dispatch(getPostDetails(id))
+            dispatch(getPostDetail(id))
         }
     }
 }
@@ -32,4 +32,5 @@ const PostListContinaer = connect(
 )(PostList)
 
 export default PostListContinaer
+
 

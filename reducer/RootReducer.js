@@ -7,8 +7,8 @@ import PostList from './PostList'
 import PostDetail from './PostDetail'
 
 const RootReducer = combineReducers({
-    postDetail: PostDetail,
-    postList: PostList
+    postDetail:PostDetail,
+    postList:PostList
 })
 
 export default RootReducer

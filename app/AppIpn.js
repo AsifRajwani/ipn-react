@@ -2,7 +2,9 @@ import React from 'react';
 import {render} from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger'
 import RootReducer from "../reducer/RootReducer.js"
 import CmsComponent from './CmsComponent';
 import CmsComponentContainer from '../containers/CmsComponentContainer';
@@ -335,9 +337,16 @@ let generalList = [
     }
 ]
 
-
+const loggerMiddleware = createLogger();
 const app = document.getElementById('root');
-let store = createStore(RootReducer);
+let store = createStore(RootReducer,
+    applyMiddleware(
+        thunkMiddleware, // lets us dispatch() functions
+        loggerMiddleware // neat middleware that logs actions
+    )
+);
+
+
 render(
     <Provider store={store}>
         <Router history={hashHistory}>
@@ -349,7 +358,7 @@ render(
             </Route>
         </Router>
     </Provider>,
-app
+    app
 )
 ;
 

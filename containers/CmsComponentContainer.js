@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(getSpotlightPosts)
         },
         onShowGeneralList: () => {
-            dispatch(getDetailPost)
+            dispatch(getGeneralPosts)
         }
     }
 }
