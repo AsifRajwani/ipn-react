@@ -11,7 +11,7 @@ const PostDetail = (state = {
             return Object.assign({}, state, {
                 isFetching: false, post: action.post
             });
-        case 'CONTENT_REQUEST_STARTED':
+        case 'DETAIL_CONTENT_REQUEST_STARTED':
             return Object.assign({}, state, {
                 isFetching: true
             });

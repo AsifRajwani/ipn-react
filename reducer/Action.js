@@ -30,7 +30,7 @@ export const getGeneralPosts = () => {
 export const getPostDetail = (postId) => {
     let urlToFetch = CONTENT_API_URL+ "posts/" +postId;
     return dispatch => {
-        dispatch(contentRequestStarted())
+        dispatch(detailContentRequestStarted())
         return fetch(urlToFetch)
             .then(response => response.json())
             .then(json => dispatch(receivePostDetail(postId, json)))
@@ -47,16 +47,16 @@ const receivePostDetail=(postId, postDetail)=> {
 
 
 /*Called when the request to get async content is started. */
-const contentRequestStarted = () => {
+const detailContentRequestStarted = () => {
     return {
-        type: 'CONTENT_REQUEST_STARTED'
+        type: 'DETAIL_CONTENT_REQUEST_STARTED'
     }
 }
 
 const  fetchPostType=(postType) => {
     let urlToFetch = {CONTENT_API_URL}+ "posts?filter[cat]=" +{postType};
     return dispatch => {
-        dispatch(contentRequestStarted())
+        dispatch(detailContentRequestStarted())
         return fetch(urlToFetch)
             .then(response => response.json())
             .then(json => dispatch(receivePostType(postType, json)))
