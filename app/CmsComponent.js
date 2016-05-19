@@ -36,9 +36,8 @@ class CmsComponent extends Component {
 
 
     render() {
-
-
         return (
+
            <div>
                <nav className="navbar navbar-default navbar-fixed-top">
                    <div className="container">
@@ -46,8 +45,9 @@ class CmsComponent extends Component {
                            <a className="brand" style={{marginRight: 20}} href="#/"><img src="images/people.png" alt="logo"/></a>
                        </div>
                        <ul className="nav nav-pills" >
-                               <li><Link to="spotlight" onClick={this.props.onShowSpotlightList}>Spotlight</Link></li>
-                               <li><Link to="general" onClick={this.props.onShowGeneralList}>General</Link></li>
+                           <li><Link to="/spotlight" onClick={() => this.props.onShowSpotlightList()}>Spotlight</Link></li>
+                           <li><Link  to="/general" onClick={()=>this.props.onShowGeneralList()}>General</Link></li>
+
                         </ul>
                    </div>
                </nav>
