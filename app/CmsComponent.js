@@ -45,8 +45,16 @@ class CmsComponent extends Component {
                            <a className="brand" style={{marginRight: 20}} href="#/"><img src="images/people.png" alt="logo"/></a>
                        </div>
                        <ul className="nav nav-pills" >
-                           <li><Link to="/spotlight" onClick={() => this.props.onShowSpotlightList()}>Spotlight</Link></li>
-                           <li><Link  to="/general" onClick={()=>this.props.onShowGeneralList()}>General</Link></li>
+
+                           <li><Link to="/spotlight" onClick={() => this.props.fetchPostType(4)}>Spotlight</Link></li>
+                           <li><Link  to="/general" onClick={()=>this.props.fetchPostType(3)}>General</Link></li>
+
+                           {/*
+                            <li><Link to="/spotlight" onClick={() => this.props.onShowSpotlightList()}>Spotlight</Link></li>
+                            <li><Link  to="/general" onClick={()=>this.props.onShowGeneralList()}>General</Link></li>
+                           <li><Link to="/spotlight" >Spotlight</Link></li>
+                           <li><Link  to="/general" >General</Link></li>
+                           */}
 
                         </ul>
                    </div>

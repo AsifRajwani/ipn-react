@@ -9,7 +9,7 @@
 
 
 import { connect } from 'react-redux'
-import { getSpotlightPosts, getGeneralPosts } from '../reducer/Action'
+import { getSpotlightPosts, getGeneralPosts, getPostDetail, fetchPostType } from '../reducer/Action'
 import CmsComponent from '../app/CmsComponent'
 
 
@@ -20,6 +20,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         onShowGeneralList: () => {
             dispatch(getGeneralPosts)
+        },
+        onShowDetail: (id) => {
+            dispatch(getPostDetail(id))
+        },
+        fetchPostType: (id) => {
+            dispatch(fetchPostType(id))
         }
     }
 }

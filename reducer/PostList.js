@@ -2,12 +2,20 @@
  * Created by asif on 5/15/2016.
  */
 
-const PostList = (state = spotlightList, action='') => {
+const PostList = (state = {
+    isFetching: false,
+    type: 4,
+    list: spotlightList
+}, action='') => {
     switch (action.type) {
-        case 'GET_SPOTLIGHT_POSTS':
-            return spotlightList;
-        case 'GET_GENERAL_POSTS':
-            return generalList;
+        case 'RECEIVE_POST_TYPE':
+            return Object.assign({}, state, {
+                isFetching: false, type: action.type, list: action.list
+            });
+        case 'POST_LIST_CONTENT_REQUEST_STARTED':
+            return Object.assign({}, state, {
+                isFetching: true
+            });
         default:
             return state
     }

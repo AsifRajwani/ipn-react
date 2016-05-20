@@ -351,9 +351,9 @@ render(
     <Provider store={store}>
         <Router history={hashHistory}>
             <Route path="/" component={CmsComponentContainer}>
-                <IndexRoute component={PostListContainer} postType="spotlight"></IndexRoute>
-                <Route path="spotlight" component={PostListContainer} postType="spotlight"></Route>
-                <Route path="general" component={PostListContainer} postType="general"></Route>
+                <IndexRoute component={PostListContainer} title="Spotlight"></IndexRoute>
+                <Route path="spotlight" component={PostListContainer} title="Spotlight"></Route>
+                <Route path="general" component={PostListContainer} title="General"></Route>
                 <Route path="post(/:postid)" component={PostDetailContainer}></Route>
             </Route>
         </Router>

@@ -3,23 +3,33 @@
  */
 import React, { Component } from 'react';
 import PostSummary from './PostSummary';
-import PostSummaryContainer from '../containers/PostDetailContainer';
+import PostDetailContainer from '../containers/PostDetailContainer';
+import { getSpotlightPosts, getGeneralPosts } from '../reducer/Action'
 
 class PostList extends Component {
     constructor() {
         super(...arguments);
-        this.state = {
-        };
     }
 
-    render() {
-        //let currentPostList = spotlightList;
-        let currentPostList = this.props.postList
-        let heading = 'Spotlight Posts';
+   /* componentDidMount(){
         if (this.props.route.postType == "general") {
-            currentPostList = generalList;
-            heading = 'General Posts';
+            getGeneralPosts();
+        } else {
+            getSpotlightPosts();
         }
+    }*/
+
+    render() {
+        //Empty wait
+        console.log("starting wait");
+        for (var i=0; i<1000000; i++){
+            ;
+        }
+        console.log("done wait");
+        let heading = this.props.route.title;
+        let currentPostList = this.props.postList.list;
+        if (!currentPostList)
+            return;
         debugger;
         var posts = currentPostList.map((post) => {
             return <PostSummary key={post.id}
@@ -33,15 +43,20 @@ class PostList extends Component {
 
                 />
         });
+        if (this.props.postList.isFetching) {
+            return (
+                <h2 className="page-header">Loading...</h2>
+            );
+        } else {
+            return (
+                <div className="postContainer container">
+                    <h1 className="page-header collectionheading">{heading}</h1>
+                    {posts}
+                    {/*<a href="#" className="btn btn-info btn-xs" role="button" onClick={this.toggleDetails.bind(this)}>Toogle State....</a>*/}
+                </div>
 
-        return (
-            <div className="postContainer container">
-                <h1 className="page-header collectionheading">{heading}</h1>
-                {posts}
-                {/*<a href="#" className="btn btn-info btn-xs" role="button" onClick={this.toggleDetails.bind(this)}>Toogle State....</a>*/}
-            </div>
-
-        );
+            );
+        }
     }
 }
 
