@@ -1,8 +1,8 @@
 {
-  "name": "kanban-app",
+  "name": "IPN-CMS",
   "version": "0.1.0",
-  "description": "Pro React sample kanban app project",
-  "author": "Cássio Zen",
+  "description": "IPN CMS Integration using ReactJs",
+  "author": "Asif Rajwani",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --progress",
