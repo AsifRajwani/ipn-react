@@ -31,7 +31,7 @@ class CmsComponent extends Component {
                <nav className="navbar navbar-default navbar-fixed-top">
                    <div className="container">
                        <div className="navbar-header">
-                           <a className="brand" style={{marginRight: 20}} href="#/"><img src="images/people.png" alt="logo"/></a>
+                           <a className="brand" style={{marginRight: 20}} href="#/" onClick={() => this.props.fetchPostType(CONTENT_CATEGORY_SPOTLIGHT)}><img src="images/people.png" alt="logo"/></a>
                        </div>
                        <ul className="nav nav-pills" >
                            <li><Link to="/spotlight" onClick={() => this.props.fetchPostType(CONTENT_CATEGORY_SPOTLIGHT)}>Spotlight</Link></li>
