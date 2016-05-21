@@ -11,9 +11,9 @@ import { Link } from 'react-router'
 class CmsComponent extends Component {
     constructor() {
         super(...arguments);
-        debugger;
     }
 
+    //First time when component is hit without menu item click.
     componentDidMount(){
         if (this.props.route.postType == "general") {
             this.props.fetchPostType(CONTENT_CATEGORY_GENERAL);
