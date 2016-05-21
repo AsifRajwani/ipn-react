@@ -2,9 +2,10 @@
  * Created by asif on 5/13/2016.
  */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import PostList from './PostList';
 import PostDetail from './PostDetail';
+import {CONTENT_CATEGORY_SPOTLIGHT, CONTENT_CATEGORY_GENERAL} from './IPNConstants'
 import { Link } from 'react-router'
 
 class CmsComponent extends Component {
@@ -15,9 +16,9 @@ class CmsComponent extends Component {
 
     componentDidMount(){
         if (this.props.route.postType == "general") {
-            this.props.fetchPostType(3);
+            this.props.fetchPostType(CONTENT_CATEGORY_GENERAL);
         } else {
-            this.props.fetchPostType(4);
+            this.props.fetchPostType(CONTENT_CATEGORY_SPOTLIGHT);
         }
     }
 
@@ -33,8 +34,8 @@ class CmsComponent extends Component {
                            <a className="brand" style={{marginRight: 20}} href="#/"><img src="images/people.png" alt="logo"/></a>
                        </div>
                        <ul className="nav nav-pills" >
-                           <li><Link to="/spotlight" onClick={() => this.props.fetchPostType(4)}>Spotlight</Link></li>
-                           <li><Link  to="/general" onClick={()=>this.props.fetchPostType(3)}>General</Link></li>
+                           <li><Link to="/spotlight" onClick={() => this.props.fetchPostType(CONTENT_CATEGORY_SPOTLIGHT)}>Spotlight</Link></li>
+                           <li><Link  to="/general" onClick={()=>this.props.fetchPostType(CONTENT_CATEGORY_GENERAL)}>General</Link></li>
 
                            {/*
                             <li><Link to="/spotlight" onClick={() => this.props.onShowSpotlightList()}>Spotlight</Link></li>
@@ -71,4 +72,9 @@ class CmsComponent extends Component {
 
 
 }
+
+CmsComponent.propTypes = {
+    onShowDetail: PropTypes.func.isRequired,
+    fetchPostType: PropTypes.func.isRequired
+};
 export default CmsComponent;

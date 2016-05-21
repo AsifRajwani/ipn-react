@@ -4,15 +4,7 @@
 
 import { dispatch } from 'redux'
 
-const CONTENT_API_URL = 'https://ipndev2.southcentralus.cloudapp.azure.com/html/wp-json/wp/v2/';
-const CONTENT_CATEGORY_SPOTLIGHT = 4;
-const CONTENT_CATEGORY_GENERAL = 3;
-
-/*
- export const boundedGetSpotlightPosts =  () =>  dispatch(getSpotlightPosts());
- export const boundedGetGeneralPosts =  () =>  dispatch(getGeneralPosts());
- export const boundedGetPostDetails = (postId) => dispatch(getPostDetails(postId));
- */
+import {CONTENT_API_URL, CONTENT_CATEGORY_SPOTLIGHT, CONTENT_CATEGORY_GENERAL} from '../app/IPNConstants'
 
 
 export const getSpotlightPosts = () => {

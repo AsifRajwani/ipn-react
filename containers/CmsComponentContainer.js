@@ -15,12 +15,6 @@ import CmsComponent from '../app/CmsComponent'
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onShowSpotlightList: () => {
-            dispatch(getSpotlightPosts)
-        },
-        onShowGeneralList: () => {
-            dispatch(getGeneralPosts)
-        },
         onShowDetail: (id) => {
             dispatch(getPostDetail(id))
         },

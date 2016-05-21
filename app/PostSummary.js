@@ -10,7 +10,7 @@ class PostSummary extends Component {
     render() {
         return (
             <div className="container" id={this.props.id}>
-                <h2 className="postheading">{this.props.title}</h2>
+                <h2 className="postheading" dangerouslySetInnerHTML={ {__html: this.props.title}}></h2>
                 <img className="postimage img-rounded" src={this.props.image}/>
 
                 <div className="posttext">
@@ -29,7 +29,6 @@ class PostSummary extends Component {
         )
     }
 
-/*<a href="#" className="btn btn-info btn-xs" role="button"  onClick={this.props.onShowDetail.bind(null, this.props.id)}>More....</a>*/
 }
 
 PostSummary.propTypes = {
@@ -45,22 +44,3 @@ PostSummary.propTypes = {
 
 export default PostSummary;
 
-
-/*
- <div class="post" data-ng-repeat="post in posts">
- <h2 class="postheading" ng-bind-html="post.title.rendered | unsafe"></h2>
- <img class="postimage img-rounded" ng-src="{{post.featured_image_src}}">
-
- <div class="posttext">
-
- <span class="postexcerpt" ng-bind-html="post.excerpt.rendered | unsafe"></span>
-
-
- <span class="label label-default">{{post.date_gmt | date:'mediumDate'}} <em>by</em> {{post.author_name}}</span>
- <a ui-sref="singlepost({postId: post.id})" class="btn btn-info btn-xs" role="button">More....</a>
-
-
- <br><br>
- </div>
- </div>
- */
