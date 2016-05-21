@@ -5,7 +5,7 @@
 const PostList = (state = {
     isFetching: false,
     type: 4,
-    list: spotlightList
+    list: []
 }, action='') => {
     switch (action.type) {
         case 'RECEIVE_POST_TYPE':

@@ -61,7 +61,7 @@ export const fetchPostType = (postType) => {
         return fetch(urlToFetch)
             .then(response => response.json())
             .then(json => dispatch(receivePostType(postType, json)))
-            .error(err=> console.log("error" + err))
+            .catch(err=> console.log("error" + err))
     }
 }
 

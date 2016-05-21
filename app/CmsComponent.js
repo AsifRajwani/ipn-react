@@ -11,28 +11,16 @@ class CmsComponent extends Component {
     constructor() {
         super(...arguments);
         debugger;
-        {this.props.children}
-        this.state = {
-            showDetails: false,
-            currentPost: {}
-        };
     }
 
-    showDetails(postId) {
-        let post = this.props.spotlightList[0];
-        let filteredPostIndex = this.props.spotlightList.findIndex((post)=>post.id == postId);
-
-        if (filteredPostIndex  > -1)
-            post = this.props.spotlightList[filteredPostIndex];
-
-
-        this.setState({showDetails: true, currentPost: post});
+    componentDidMount(){
+        if (this.props.route.postType == "general") {
+            this.props.fetchPostType(3);
+        } else {
+            this.props.fetchPostType(4);
+        }
     }
 
-
-    toggleDetails() {
-        this.setState({showDetails: !this.state.showDetails});
-    }
 
 
     render() {
@@ -45,7 +33,6 @@ class CmsComponent extends Component {
                            <a className="brand" style={{marginRight: 20}} href="#/"><img src="images/people.png" alt="logo"/></a>
                        </div>
                        <ul className="nav nav-pills" >
-
                            <li><Link to="/spotlight" onClick={() => this.props.fetchPostType(4)}>Spotlight</Link></li>
                            <li><Link  to="/general" onClick={()=>this.props.fetchPostType(3)}>General</Link></li>
 
@@ -82,13 +69,6 @@ class CmsComponent extends Component {
            </div>);
     }
 
-/*
-<div>
-<h1> header </h1>
-<PostList key="prodList"   type="spotlight" ></PostList>
-<h1> footer </h1>
-</div>
-*/
 
 }
 export default CmsComponent;

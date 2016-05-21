@@ -4,20 +4,13 @@
 import React, { Component } from 'react';
 import PostSummary from './PostSummary';
 import PostDetailContainer from '../containers/PostDetailContainer';
-import { getSpotlightPosts, getGeneralPosts } from '../reducer/Action'
+import { getSpotlightPosts, getGeneralPosts, fetchPostType } from '../reducer/Action'
 
 class PostList extends Component {
     constructor() {
         super(...arguments);
     }
 
-   /* componentDidMount(){
-        if (this.props.route.postType == "general") {
-            getGeneralPosts();
-        } else {
-            getSpotlightPosts();
-        }
-    }*/
 
     render() {
         //Empty wait
@@ -62,6 +55,7 @@ class PostList extends Component {
 
 export default PostList;
 
+/*
 let spotlightList = [
     {
         "id": 27,
@@ -385,3 +379,4 @@ let generalList = [
         }
     }
 ]
+    */
