@@ -1,0 +1,40 @@
+cd /c/work/eclipseWorkspace/proxyvote/crypto
+./cryptogen generate --config=./crypto-config.yaml
+./configtxgen -profile TwoOrgsOrdererGenesis -outputBlock genesis.block
+
+./configtxgen -profile OrdererGenesis -outputBlock genesis.block
+./configtxgen -profile public -outputCreateChannelTx public.tx -channelID public
+./configtxgen -profile ms -outputCreateChannelTx ms.tx -channelID ms
+./configtxgen -profile gs -outputCreateChannelTx gs.tx -channelID gs
+./configtxgen -profile jpm -outputCreateChannelTx jpm.tx -channelID jpm
+
+
+
+docker run -i -t hyperledger/fabric-tools:x86_64-1.0.4 bash
+docker cp f3b401c65c65:/etc/hyperledger/fabric-ca-server/fabric-ca-server.db .
+docker exec -it cli bash
+
+peer channel create -o orderer.VotingProxy.com:7050 -c public -f /etc/hyperledger/msp/peer/public.tx
+
+
+CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp
+CORE_PEER_ADDRESS=peer0.Custodian.VotingProxy.com:7051
+CORE_PEER_LOCALMSPID="CustodianMSP"
+
+1.	Orderer with multiple genesis blocks
+2.	Crypto folder structure
+3.	Kafka orderer
+4.	Kubernetes
+5.	Laptop setup
+
+1.
+Orderer genesis block
+Join channel channel within cli
+Cli peer fabric-tools image
+Copy files & commands into cli container
+
+
+KVM
+
+
+

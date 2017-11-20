@@ -1,0 +1,9 @@
+[36m2017-11-17 21:23:28.294 UTC [msp] GetLocalMSP -> DEBU 001[0m Returning existing local MSP
+[36m2017-11-17 21:23:28.294 UTC [msp] GetDefaultSigningIdentity -> DEBU 002[0m Obtaining default signing identity
+2017-11-17 21:23:28.297 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 003[0m Using default escc
+2017-11-17 21:23:28.297 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 004[0m Using default vscc
+[36m2017-11-17 21:23:28.298 UTC [msp/identity] Sign -> DEBU 005[0m Sign: plaintext: 0AB8070A6108031A0C08D0A6BDD00510...6E4D53500A04657363630A0476736363 
+[36m2017-11-17 21:23:28.298 UTC [msp/identity] Sign -> DEBU 006[0m Sign: digest: 8B7014586BC248054C3775C281D932A9DEFA99392C722B5F02C1578602C0A266 
+[36m2017-11-17 21:23:28.330 UTC [msp/identity] Sign -> DEBU 007[0m Sign: plaintext: 0AB8070A6108031A0C08D0A6BDD00510...D64EC2BF0784947850039A678113CE86 
+[36m2017-11-17 21:23:28.330 UTC [msp/identity] Sign -> DEBU 008[0m Sign: digest: 6EA3431C679CFCF9AB0014F2174EA5C7E4F2AC3F54E000903857E33556C01009 
+2017-11-17 21:23:28.345 UTC [main] main -> INFO 009[0m Exiting.....
