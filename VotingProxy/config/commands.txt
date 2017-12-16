@@ -1,0 +1,13 @@
+cd /c/work/eclipseWorkspace/proxyvote/crypto
+./cryptogen generate --config=./crypto-config.yaml
+./configtxgen -profile TwoOrgsOrdererGenesis -outputBlock genesis.block
+
+./configtxgen -profile OrdererGenesis -outputBlock genesis.block
+./configtxgen -profile public -outputCreateChannelTx public.tx -channelID public
+docker exec -it cli bash
+
+docker-machine regenerate-certs minikube
+docker-machine env minikube
+minikube start --vm-driver=hyperv --hyperv-virtual-switch="Docker Wifi Switch" --v=7
+docker rmi -f docker rmi $(docker images --filter=reference="*dev-*" -q)
+docker images | grep "stuff_" | awk '{print $1 ":" $2}' | xargs docker rmi

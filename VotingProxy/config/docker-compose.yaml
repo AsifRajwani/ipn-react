@@ -1,0 +1,216 @@
+version: '2.0'
+
+services:
+  orderer.VotingProxy.com:
+    container_name: orderer.VotingProxy.com
+    image: hyperledger/fabric-orderer:x86_64-1.0.4
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=false
+      - GRPC_TRACE=all=true
+      - GRPC_VERBOSITY=debug
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+     - ../artifacts:/etc/hyperledger/configtx:ro
+     - ./crypto-config/ordererOrganizations/VotingProxy.com/orderers/orderer.VotingProxy.com/:/etc/hyperledger/orderer:ro
+    ports:
+      - 7050:7050
+
+  custodianCA:
+    container_name: ca.custodian.VotingProxy.com
+    image: hyperledger/fabric-ca:x86_64-1.0.4
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.custodian.VotingProxy.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/ac5068e18284dae26e0b7e68f5f1308ba388c663d2de3141c2d6df34839b0f7e_sk -b admin:adminpw --tls.certfile /etc/hyperledger/fabric-ca-server-config/ca.custodian.VotingProxy.com-cert.pem --tls.keyfile /etc/hyperledger/fabric-ca-server-config/ac5068e18284dae26e0b7e68f5f1308ba388c663d2de3141c2d6df34839b0f7e_sk -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/custodian.VotingProxy.com/ca/:/etc/hyperledger/fabric-ca-server-config:ro
+
+  peer0.custodian.VotingProxy.com:
+    container_name: peer0.custodian.VotingProxy.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.custodian.VotingProxy.com
+      - CORE_PEER_ADDRESS=peer0.custodian.VotingProxy.com:7051
+      - CORE_PEER_LOCALMSPID=custodianMSP
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=db.custodian.VotingProxy.com:5984
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/custodian.VotingProxy.com/peers/peer0.custodian.VotingProxy.com/:/etc/hyperledger/peer:ro
+      - ../:/opt/gopath/src/github.com/hyperledger/fabric/peer:rw
+    ports:
+      - 7051:7051
+      - 7053:7053
+    depends_on:
+      - orderer.VotingProxy.com
+      - db.custodian.VotingProxy.com
+
+  db.custodian.VotingProxy.com:
+    container_name: db.custodian.VotingProxy.com
+    image: hyperledger/fabric-couchdb:x86_64-1.0.4
+    ports:
+      - 5984:5984
+
+  morganstanleyCA:
+    container_name: ca.morganstanley.VotingProxy.com
+    image: hyperledger/fabric-ca:x86_64-1.0.4
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+    ports:
+      - "7064:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.morganstanley.VotingProxy.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/9a55674c5e35dbb29f803b96176c229d4c4f1356c8126ecb4175e9b710e2e046_sk -b admin:adminpw --tls.certfile /etc/hyperledger/fabric-ca-server-config/ca.morganstanley.VotingProxy.com-cert.pem --tls.keyfile /etc/hyperledger/fabric-ca-server-config/9a55674c5e35dbb29f803b96176c229d4c4f1356c8126ecb4175e9b710e2e046_sk -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/morganstanley.VotingProxy.com/ca/:/etc/hyperledger/fabric-ca-server-config:ro
+
+  peer0.morganstanley.VotingProxy.com:
+    container_name: peer0.morganstanley.VotingProxy.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.morganstanley.VotingProxy.com
+      - CORE_PEER_ADDRESS=peer0.morganstanley.VotingProxy.com:7051
+      - CORE_PEER_LOCALMSPID=morganstanleyMSP
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=db.morganstanley.VotingProxy.com:5984
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/morganstanley.VotingProxy.com/peers/peer0.morganstanley.VotingProxy.com/:/etc/hyperledger/peer:ro
+      - ../:/opt/gopath/src/github.com/hyperledger/fabric/peer:rw
+    ports:
+      - 7061:7051
+      - 7063:7053
+    depends_on:
+      - orderer.VotingProxy.com
+      - db.morganstanley.VotingProxy.com
+
+  db.morganstanley.VotingProxy.com:
+    container_name: db.morganstanley.VotingProxy.com
+    image: hyperledger/fabric-couchdb:x86_64-1.0.4
+    ports:
+      - 6984:5984
+
+  goldmansacksCA:
+    container_name: ca.goldmansacks.VotingProxy.com
+    image: hyperledger/fabric-ca:x86_64-1.0.4
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+    ports:
+      - "7074:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.goldmansacks.VotingProxy.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/8e63be8984173533a81b15c2b28ae42a814e3d91e9275a2770fe879ad241da17_sk -b admin:adminpw --tls.certfile /etc/hyperledger/fabric-ca-server-config/ca.goldmansacks.VotingProxy.com-cert.pem --tls.keyfile /etc/hyperledger/fabric-ca-server-config/8e63be8984173533a81b15c2b28ae42a814e3d91e9275a2770fe879ad241da17_sk -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/goldmansacks.VotingProxy.com/ca/:/etc/hyperledger/fabric-ca-server-config:ro
+
+  peer0.goldmansacks.VotingProxy.com:
+    container_name: peer0.goldmansacks.VotingProxy.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.goldmansacks.VotingProxy.com
+      - CORE_PEER_ADDRESS=peer0.goldmansacks.VotingProxy.com:7051
+      - CORE_PEER_LOCALMSPID=goldmansacksMSP
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=db.goldmansacks.VotingProxy.com:5984
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/goldmansacks.VotingProxy.com/peers/peer0.goldmansacks.VotingProxy.com/:/etc/hyperledger/peer:ro
+      - ../:/opt/gopath/src/github.com/hyperledger/fabric/peer:rw
+    ports:
+      - 7071:7051
+      - 7073:7053
+    depends_on:
+      - orderer.VotingProxy.com
+      - db.goldmansacks.VotingProxy.com
+
+  db.goldmansacks.VotingProxy.com:
+    container_name: db.goldmansacks.VotingProxy.com
+    image: hyperledger/fabric-couchdb:x86_64-1.0.4
+    ports:
+      - 7984:5984
+
+  jpmorganCA:
+    container_name: ca.jpmorgan.VotingProxy.com
+    image: hyperledger/fabric-ca:x86_64-1.0.4
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+    ports:
+      - "7084:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.jpmorgan.VotingProxy.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/358916c110802948b794ff170c255eae43b42bb8d23e5c9cb6b4d91112adeb5a_sk -b admin:adminpw --tls.certfile /etc/hyperledger/fabric-ca-server-config/ca.jpmorgan.VotingProxy.com-cert.pem --tls.keyfile /etc/hyperledger/fabric-ca-server-config/358916c110802948b794ff170c255eae43b42bb8d23e5c9cb6b4d91112adeb5a_sk -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/jpmorgan.VotingProxy.com/ca/:/etc/hyperledger/fabric-ca-server-config:ro
+
+  peer0.jpmorgan.VotingProxy.com:
+    container_name: peer0.jpmorgan.VotingProxy.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.jpmorgan.VotingProxy.com
+      - CORE_PEER_ADDRESS=peer0.jpmorgan.VotingProxy.com:7051
+      - CORE_PEER_LOCALMSPID=jpmorganMSP
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=db.jpmorgan.VotingProxy.com:5984
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/jpmorgan.VotingProxy.com/peers/peer0.jpmorgan.VotingProxy.com/:/etc/hyperledger/peer:ro
+      - ../:/opt/gopath/src/github.com/hyperledger/fabric/peer:rw
+    ports:
+      - 7081:7051
+      - 7083:7053
+    depends_on:
+      - orderer.VotingProxy.com
+      - db.jpmorgan.VotingProxy.com
+
+  db.jpmorgan.VotingProxy.com:
+    container_name: db.jpmorgan.VotingProxy.com
+    image: hyperledger/fabric-couchdb:x86_64-1.0.4
+    ports:
+      - 8984:5984
+
+  cli:
+    container_name: cli
+    image: hyperledger/fabric-tools:x86_64-1.0.4 
+    tty: true
+    #command: /bin/bash -c './channel-config.sh; sleep 100000'
+    command: /bin/bash -c 'sleep 100000'
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer/cli
+    environment:
+      - GOPATH=/opt/gopath
+      - CORE_PEER_ADDRESSAUTODETECT=true
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_NEXT=true
+      - CORE_PEER_ID=cli
+      - CORE_PEER_ENDORSER_ENABLED=true
+      - CORE_PEER_GOSSIP_IGNORESECURITY=true
+    ports:
+      - 7091:7051
+      - 7093:7053
+    volumes:
+      - ../:/opt/gopath/src/github.com/hyperledger/fabric/peer:rw
+      - ../chaincode/:/opt/gopath/src/github.com/hyperledger/fabric/chaincode:rw
+    depends_on:
+      - orderer.VotingProxy.com
+      - peer0.custodian.VotingProxy.com
+      - peer0.morganstanley.VotingProxy.com
+      - peer0.goldmansacks.VotingProxy.com
+      - peer0.jpmorgan.VotingProxy.com
+      
+  ccenv:
+    image: hyperledger/fabric-ccenv:x86_64-1.0.4
+      

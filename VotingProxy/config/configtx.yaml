@@ -1,0 +1,146 @@
+---
+################################################################################
+#
+#   Profile
+#
+#   - Different configuration profiles may be encoded here to be specified
+#   as parameters to the configtxgen tool
+#
+################################################################################
+Profiles:
+
+    OrdererGenesis:
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                    - *Orderer
+        Consortiums:
+            SampleConsortium:
+                Organizations:
+                    - *custodian
+                    - *morganstanley
+                    - *goldmansacks
+                    - *jpmorgan
+
+    custodian:
+        Consortium: SampleConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *custodian
+                - *morganstanley
+                - *goldmansacks
+                - *jpmorgan
+
+    morganstanley:
+        Consortium: SampleConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *custodian
+                - *morganstanley
+
+    goldmansacks:
+        Consortium: SampleConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *custodian
+                - *goldmansacks
+
+    jpmorgan:
+        Consortium: SampleConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *custodian
+                - *jpmorgan
+
+################################################################################
+#
+#   Section: Organizations
+#
+#   - This section defines the different organizational identities which will
+#   be referenced later in the configuration.
+#
+################################################################################
+Organizations:
+
+    - &Orderer
+        Name: Orderer
+        ID: OrdererMSP
+        MSPDir: crypto-config/ordererOrganizations/VotingProxy.com/msp
+        AdminPrincipal: Role.MEMBER
+
+    - &custodian
+        Name: custodianMSP
+        ID: custodianMSP
+        MSPDir: crypto-config/peerOrganizations/custodian.VotingProxy.com/msp
+        AdminPrincipal: Role.MEMBER        
+#        AnchorPeers:
+#            - Host: peer0.custodian.VotingProxy.com
+#              Port: 7051
+
+    - &morganstanley
+        Name: morganstanleyMSP
+        ID: morganstanleyMSP
+        MSPDir: crypto-config/peerOrganizations/morganstanley.VotingProxy.com/msp
+        AdminPrincipal: Role.MEMBER        
+#        AnchorPeers:
+#            - Host: peer0.morganstanley.VotingProxy.com
+#              Port: 7051
+
+    - &goldmansacks
+        Name: goldmansacksMSP
+        ID: goldmansacksMSP
+        MSPDir: crypto-config/peerOrganizations/goldmansacks.VotingProxy.com/msp
+        AdminPrincipal: Role.MEMBER        
+#        AnchorPeers:
+#            - Host: peer0.goldmansacks.VotingProxy.com
+#              Port: 7051
+
+    - &jpmorgan
+        Name: jpmorganMSP
+        ID: jpmorganMSP
+        MSPDir: crypto-config/peerOrganizations/jpmorgan.VotingProxy.com/msp
+        AdminPrincipal: Role.MEMBER        
+#        AnchorPeers:
+#            - Host: peer0.jpmorgan.VotingProxy.com
+#              Port: 7051
+
+################################################################################
+#
+#   SECTION: Orderer
+#
+#   - This section defines the values to encode into a config transaction or
+#   genesis block for orderer related parameters
+#
+################################################################################
+Orderer: &OrdererDefaults
+
+    OrdererType: solo
+    Addresses:
+        - orderer.VotingProxy.com:7050
+    BatchTimeout: 2s
+    BatchSize:
+        MaxMessageCount: 10
+        AbsoluteMaxBytes: 98 MB
+        PreferredMaxBytes: 512 KB
+
+    Kafka:
+        Brokers:
+            - 127.0.0.1:9092
+
+    Organizations:
+
+################################################################################
+#
+#   SECTION: Application
+#
+#   - This section defines the values to encode into a config transaction or
+#   genesis block for application related parameters
+#
+################################################################################
+Application: &ApplicationDefaults
+
+    Organizations:

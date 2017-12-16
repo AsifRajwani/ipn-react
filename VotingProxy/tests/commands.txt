@@ -1,0 +1,3 @@
+-setEnvVars custodian
+-invoke -C custodian -n public -c '{"Args":["announceProxyVote","WellsFargo","WellsFargoCeoVoting"]}'
+-query -C custodian -n public -v 1.0 -c '{"Args":["queryProxyVotingIDs"]}'

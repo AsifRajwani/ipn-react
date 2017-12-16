@@ -1,0 +1,34 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: VotingProxy.com
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  - Name: custodian
+    Domain: custodian.VotingProxy.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  - Name: morganstanley
+    Domain: morganstanley.VotingProxy.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  - Name: goldmansacks
+    Domain: goldmansacks.VotingProxy.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  - Name: jpmorgan
+    Domain: jpmorgan.VotingProxy.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1

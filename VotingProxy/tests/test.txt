@@ -1,0 +1,149 @@
+-setEnvVars custodian
+#announce Proxy Vote
+-invoke -C custodian -n public -c '{"Args":["announceProxyVote","WellsFargo","WellsFargoCeoVoting"]}'
+
+#add Proxy Vote options WalterScott JulesVerne JamesJoyce options to the created Proxy Vote
+-invoke -C custodian -n public -c '{"Args":["addVoteOptions","WellsFargo","WalterScott","JulesVerne","JamesJoyce"]}'
+
+#add Proxy Vote autorizations for morganstanley to the created Proxy Vote
+-invoke -C morganstanley -n shares -c '{"Args":["addAutorizations","WellsFargo"]}'
+
+#add Proxy Vote autorizations for goldmansacks to the created Proxy Vote
+-invoke -C goldmansacks -n shares -c '{"Args":["addAutorizations","WellsFargo"]}'
+
+#add Proxy Vote autorizations for mjpmorgan to the created Proxy Vote
+-invoke -C jpmorgan -n shares -c '{"Args":["addAutorizations","WellsFargo"]}'
+
+#activate the Proxy Vote
+-invoke -C custodian -n public -c '{"Args":["setProxyVoteState","WellsFargo","active"]}'
+
+#query the Proxy Vote state, should be active
+-query -C custodian -n public -v 1.0 -c '{"Args":["getProxyVoteState","WellsFargo"]}'
+
+#list all announced Proxy Votes, there sholud be only one and active
+-query -C custodian -n public -v 1.0 -c '{"Args":["queryProxyVotingIDs"]}'
+
+#set 357 shares for morganstanley member
+-invoke -C morganstanley -n shares -c '{"Args":["initMemberShares","357"]}'
+
+#set 135 shares for goldmansacks member
+-invoke -C goldmansacks -n shares -c '{"Args":["initMemberShares","135"]}'
+
+#set 531 shares for jpmorgan member
+-invoke -C jpmorgan -n shares -c '{"Args":["initMemberShares","531"]}'
+
+#query the morganstanley member's shares, must match the previous setting
+-setEnvVars custodian
+-query -C morganstanley -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+-setEnvVars morganstanley
+-query -C morganstanley -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#query the goldmansacks member's shares, must match the previous setting
+-setEnvVars custodian
+-query -C goldmansacks -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+-setEnvVars goldmansacks
+-query -C goldmansacks -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#query the jpmorgan member's shares, must match the previous setting
+-setEnvVars custodian
+-query -C jpmorgan -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+-setEnvVars jpmorgan
+-query -C jpmorgan -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+# morganstanley votes
+#morganstanley votes shares for options WalterScott: 100 JulesVerne: 100
+-setEnvVars morganstanley
+-invoke -C morganstanley -n votes -c '{"Args":["vote","WellsFargo","WalterScott","100","JulesVerne","100"]}'
+
+#query morganstanley's remaining shares, must reflect the voted amount
+-setEnvVars custodian
+-query -C morganstanley -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+-setEnvVars morganstanley
+-query -C morganstanley -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#query morganstanley's vote, must show the vote amounts for options
+-query -C morganstanley -n votes -v 1.0 -c '{"Args":["queryVote","WellsFargo"]}'
+
+#morganstanley adjusts the previous vote incrementing amounts for options WalterScott: 11 JulesVerne: 13
+-invoke -C morganstanley -n votes -c '{"Args":["vote","WellsFargo","WalterScott","11","JulesVerne","13"]}'
+
+#query morganstanley's vote, must show the adjusted wote amounts for options
+-query -C morganstanley -n votes -v 1.0 -c '{"Args":["queryVote","WellsFargo"]}'
+
+#query morganstanley's remaining shares, must reflect the voted amount
+-setEnvVars custodian
+-query -C morganstanley -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+-setEnvVars morganstanley
+-query -C morganstanley -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#morganstanley transfers 5 votes from WalterScott option to JamesJoyce option
+-invoke -C morganstanley -n votes -c '{"Args":["vote","WellsFargo","WalterScott","-5","JamesJoyce","5"]}'
+
+#query morganstanley's remaining shares, this must be same as the it was the vote transfer between the options
+-setEnvVars custodian
+-query -C morganstanley -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+-setEnvVars morganstanley
+-query -C morganstanley -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#query morganstanley's vote, must show the adjusted wote amounts for options
+-query -C morganstanley -n votes -v 1.0 -c '{"Args":["queryVote","WellsFargo"]}'
+
+# jpmorgan votes
+#jpmorgan votes shares for options JamesJoyce 135: JulesVerne: 357
+-setEnvVars jpmorgan
+-invoke -C jpmorgan -n votes -c '{"Args":["vote","WellsFargo","JamesJoyce","135","JulesVerne","357"]}'
+
+#query jpmorgan's remaining shares, must reflect the voted amount
+-query -C jpmorgan -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#query jpmorgan member's vote, must show the wote amounts for options
+-query -C jpmorgan -n votes -v 1.0 -c '{"Args":["queryVote","WellsFargo"]}'
+
+#jpmorgan adjusts the previous vote  amounts for options adding WalterScott: 31 subtracting JulesVerne: 53
+-invoke -C jpmorgan -n votes -c '{"Args":["vote","WellsFargo","WalterScott","31","JulesVerne","-53"]}'
+
+#query jpmorgan's vote, must show the adjusted wote amounts for options
+-query -C jpmorgan -n votes -v 1.0 -c '{"Args":["queryVote","WellsFargo"]}'
+
+#query jpmorgan's remaining shares, must reflect the voted amount
+-query -C jpmorgan -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#jpmorgan transfers 25 votes from WalterScott option to JamesJoyce option
+-invoke -C jpmorgan -n votes -c '{"Args":["vote","WellsFargo","WalterScott","-25","JamesJoyce","25"]}'
+
+#query jpmorgan's remaining shares, this must be same as the it was the vote transfer between the options
+-query -C jpmorgan -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#query jpmorgan's vote, must show the adjusted wote amounts for options
+-query -C jpmorgan -n votes -v 1.0 -c '{"Args":["queryVote","WellsFargo"]}'
+
+# goldmansacks votes
+#goldmansacks votes shares for options WalterScott: 13 JamesJoyce: 57
+-setEnvVars goldmansacks
+-invoke -C goldmansacks -n votes -c '{"Args":["vote","WellsFargo","WalterScott","13","JamesJoyce","57"]}'
+
+#query goldmansacks's remaining shares, must reflect the voted amount
+-query -C goldmansacks -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#query goldmansacks member's vote, must show the wote amounts for options
+-query -C goldmansacks -n votes -v 1.0 -c '{"Args":["queryVote","WellsFargo"]}'
+
+#goldmansacks transfers 7 votes from WalterScott option to JamesJoyce option
+-invoke -C goldmansacks -n votes -c '{"Args":["vote","WellsFargo","WalterScott","-7","JamesJoyce","7"]}'
+
+#query goldmansacks remaning shares, this must be same as the it was the vote transfer between the options
+-query -C goldmansacks -n shares -v 1.0 -c '{"Args":["queryMemberShares"]}'
+
+#query goldmansacks member's vote, must show the wote amounts for options
+-query -C goldmansacks -n votes -v 1.0 -c '{"Args":["queryVote","WellsFargo"]}'
+
+#close the Proxy Vote
+-setEnvVars custodian
+-invoke -C custodian -n public -c '{"Args":["setProxyVoteState","WellsFargo","closed"]}'
+
+#publish voting results for WellsFargo vote
+-setEnvVars custodian
+-invoke -C custodian -n public -c '{"Args":["publishResults","WellsFargo"]}'
+
+#print voting results for WellsFargo vote
+-query -C custodian -n public -c '{"Args":["queryProxyVote","WellsFargo"]}'
